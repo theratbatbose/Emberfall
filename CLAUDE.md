@@ -28,7 +28,7 @@ Full spec: `docs/PRD.md` (source of truth). This file is the short version plus 
 | Storage | Dexie 4 (IndexedDB) + `dexie-react-hooks`; schema version + migrations from day one |
 | Charts | Recharts 3 (M3) |
 | Tests | Vitest + `fake-indexeddb` |
-| Hosting | GitHub Pages via Actions (`.github/workflows/web.yml`), served at `/ADHDiablo/` (`BASE_PATH`) |
+| Hosting | GitHub Pages via Actions (`.github/workflows/web.yml`), served at `/Emberfall/` (`BASE_PATH`) |
 | Android | Capacitor 8 (`android/`), `@capacitor/local-notifications`, `filesystem`, `share`. APK built + released by `.github/workflows/android.yml` |
 | Phase 2 | Supabase sync/login (local-first stays), Claude API "Break this down" (user's own key) |
 

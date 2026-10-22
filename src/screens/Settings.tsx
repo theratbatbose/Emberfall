@@ -9,7 +9,7 @@ import { useUi } from '../state/ui';
 import { Icon } from '../ui/Icon';
 import { Panel, ScreenTitle, SectionTitle, Segmented, Sheet, Toggle } from '../ui/kit';
 
-export const APK_URL = 'https://github.com/theratbatbose/ADHDiablo/releases/latest';
+export const APK_URL = 'https://github.com/theratbatbose/Emberfall/releases/latest';
 
 export async function exportBackup() {
   const save = await exportSave();

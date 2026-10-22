@@ -10,4 +10,4 @@ Already have Emberfall? Installing this version over the old one keeps your save
 
 **Why the Android app instead of the web version?** Reminders. Android can wake Emberfall at 9:00 even when it's closed, and a website can't. After installing, go to **Settings → Reminders** and tap **Allow reminders**.
 
-[What's in the game](https://github.com/theratbatbose/ADHDiablo#whats-in-it)
+[What's in the game](https://github.com/theratbatbose/Emberfall#whats-in-it)

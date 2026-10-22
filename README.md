@@ -10,8 +10,8 @@
 </p>
 
 <p align="center">
-  <a href="https://theratbatbose.github.io/ADHDiablo/"><b>Play in the browser</b></a> ·
-  <a href="https://github.com/theratbatbose/ADHDiablo/releases/latest"><b>Download the Android app</b></a> ·
+  <a href="https://theratbatbose.github.io/Emberfall/"><b>Play in the browser</b></a> ·
+  <a href="https://github.com/theratbatbose/Emberfall/releases/latest"><b>Download the Android app</b></a> ·
   <a href="#install-it-on-your-phone">Install guide</a>
 </p>
 
@@ -92,7 +92,7 @@ Both are the same game. The difference is reminders.
 
 | | Web app | Android app |
 |---|---|---|
-| Get it | [theratbatbose.github.io/ADHDiablo](https://theratbatbose.github.io/ADHDiablo/) | [Latest release](https://github.com/theratbatbose/ADHDiablo/releases/latest) (`.apk`) |
+| Get it | [theratbatbose.github.io/Emberfall](https://theratbatbose.github.io/Emberfall/) | [Latest release](https://github.com/theratbatbose/Emberfall/releases/latest) (`.apk`) |
 | Reminders | Only while the app is open or was used recently | Fire even when the app is closed |
 | Updates | Automatic | Install the newer APK over the old one; your save is kept |
 | Works offline | Yes | Yes |
@@ -103,14 +103,14 @@ Phones don't let websites schedule an alarm for later, so if you want a reminder
 
 **Android app (recommended)**
 
-1. On your phone, open the [latest release](https://github.com/theratbatbose/ADHDiablo/releases/latest) and tap the `Emberfall-1.0.x.apk` file under **Assets**.
+1. On your phone, open the [latest release](https://github.com/theratbatbose/Emberfall/releases/latest) and tap the `Emberfall-1.0.x.apk` file under **Assets**.
 2. Open the download. Android will ask whether Chrome can install apps. Tap **Settings**, turn on **Allow from this source**, go back and tap **Install**.
    If Play Protect says it doesn't recognise the app, tap **Install anyway**. That happens with every app that doesn't come from the Play Store.
 3. Open Emberfall, then go to **Settings → Reminders** and tap **Allow reminders**. On Android 12 or newer, also tap **Allow on-time alarms** if you see it.
 
 **Web app**
 
-1. Open [theratbatbose.github.io/ADHDiablo](https://theratbatbose.github.io/ADHDiablo/) in Chrome.
+1. Open [theratbatbose.github.io/Emberfall](https://theratbatbose.github.io/Emberfall/) in Chrome.
 2. Tap **⋮**, then **Add to Home screen** (or **Install app**).
 
 ## Your save
