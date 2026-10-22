@@ -93,6 +93,12 @@ Full spec: `docs/PRD.md` (source of truth). This file is the short version plus 
 - `src/ui/` kit, icons (original SVG), EmberField particles, Effects (overlays), LootReveal, QuestCard, Shell.
 - `src/screens/` Hearth, Quests, QuestEditor, Realm/Region, Hero (gear/tree/merchant), Ritual, Run, DayMap, Chronicle, Settings, Onboarding.
 
+## Docs & metadata
+- `README.md` is the public product page (screenshots in `docs/screenshots/`, banner + `social-preview.png`). Copy follows the humanizer rules: plain, warm, no hype words.
+- `index.html` has description, Open Graph and Twitter tags (`public/og-image.png`). The PWA manifest (in `vite.config.ts`) has categories and install-sheet screenshots (`public/screenshots/`, excluded from offline precache).
+- Release notes for APK builds come from `.github/release-notes.md` (`{{VERSION}}` is replaced in CI).
+- Screenshots are regenerated with a Playwright script driven by a fixed fake clock (not in the repo); note that a frozen clock also freezes Motion animations, so reload the page before shots taken after exit animations.
+
 ## Commands
 - `npm run dev` · `npm test` · `npm run build` (typecheck + build) · `node scripts/icons.mjs` (regenerate icons)
 - Android locally needs the Android SDK (not available in the cloud container); CI builds the APK.

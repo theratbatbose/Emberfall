@@ -1,5 +1,4 @@
 import { useLiveQuery } from 'dexie-react-hooks';
-import { motion } from 'motion/react';
 import { useRef } from 'react';
 import { dayStats, openReturnChest } from '../actions/game';
 import { db } from '../db/db';
@@ -61,12 +60,10 @@ export function HearthScreen({ game, now }: { game: Game; now: number }) {
       <p className="mt-2 font-display text-lg text-bone">{greeting(now)}</p>
 
       {!!pendingChest && (
-        <motion.button
+        <button
           ref={chestRef}
           className="frame-iron rarity-enchanted rarity-glow mt-3 flex w-full items-center gap-4 p-4 text-left"
           onClick={() => void openChest()}
-          initial={{ scale: 0.95, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
         >
           <Icon name="treasure" size={42} className="flicker text-gold" />
           <div className="flex-1">
@@ -74,7 +71,7 @@ export function HearthScreen({ game, now }: { game: Game; now: number }) {
             <div className="text-sm text-ash">You’re here. That’s the whole quest. Something waits for you.</div>
           </div>
           <span className="btn btn-ember">Open</span>
-        </motion.button>
+        </button>
       )}
 
       {game.event && (
@@ -145,7 +142,7 @@ export function HearthScreen({ game, now }: { game: Game; now: number }) {
           </button>
         }
       >
-        {energy ? `For a ${energyLabel(energy).toLowerCase()} fire` : 'Three for now'}
+        {energy ? `Three for now · ${energyLabel(energy)}` : 'Three for now'}
       </SectionTitle>
       {suggestions.length ? (
         <div className="space-y-2">

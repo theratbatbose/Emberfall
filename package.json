@@ -2,6 +2,25 @@
   "name": "emberfall",
   "private": true,
   "version": "1.0.0",
+  "description": "Emberfall: a phone-first, dark-fantasy life RPG built for ADHD. Real tasks drop real loot.",
+  "keywords": [
+    "adhd",
+    "life-rpg",
+    "gamification",
+    "habit-tracker",
+    "task-manager",
+    "focus-timer",
+    "pwa",
+    "capacitor",
+    "react",
+    "dark-fantasy"
+  ],
+  "homepage": "https://theratbatbose.github.io/ADHDiablo/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/theratbatbose/ADHDiablo.git"
+  },
+  "author": "theratbatbose",
   "type": "module",
   "scripts": {
     "dev": "vite",

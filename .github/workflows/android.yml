@@ -45,8 +45,9 @@ jobs:
         run: |
           VERSION="1.0.${{ github.run_number }}"
           cp android/app/build/outputs/apk/release/app-release.apk "Emberfall-$VERSION.apk"
+          sed "s/{{VERSION}}/$VERSION/g" .github/release-notes.md > release-notes.md
           gh release create "v$VERSION" "Emberfall-$VERSION.apk" \
             --target "${{ github.sha }}" \
             --title "Emberfall $VERSION" \
-            --notes "Android build of Emberfall. On your phone: download Emberfall-$VERSION.apk below, open it, and allow installing from your browser if asked. Installing a newer version keeps your save." \
+            --notes-file release-notes.md \
             --latest

@@ -62,8 +62,8 @@ export function RitualScreen({ game, now }: { game: Game; now: number }) {
         </motion.div>
       ) : (
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-          <h1 className="text-glow mt-4 text-2xl font-bold">Three for a {energyLabel(energy).toLowerCase()} fire</h1>
-          <p className="text-ash">Just these. The rest can wait.</p>
+          <h1 className="text-glow mt-4 text-2xl font-bold">Three for now</h1>
+          <p className="text-ash">Your fire: {energyLabel(energy)}. Just these. The rest can wait.</p>
           <div className="mt-4 space-y-2">
             {suggestions.map((q) => (
               <QuestCard key={q.id} quest={q} all={quests} region={game.regionById.get(q.regionId)} stage={game.stageOf(game.regionById.get(q.regionId))} now={now} />
