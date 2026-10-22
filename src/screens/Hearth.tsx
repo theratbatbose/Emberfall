@@ -112,7 +112,7 @@ export function HearthScreen({ game, now }: { game: Game; now: number }) {
           <span>
             Your fire: <span className="font-display text-ember-bright">{energy ? `${energy} · ${energyLabel(energy)}` : '—'}</span>
           </span>
-          <button className="tap min-h-11 underline decoration-dotted" onClick={() => useUi.getState().setEnergyPrompt({ source: 'post-quest' })}>
+          <button className="tap min-h-11 underline decoration-dotted" onClick={() => useUi.getState().setEnergyPrompt({ source: 'manual' })}>
             log energy
           </button>
         </div>

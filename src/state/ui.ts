@@ -33,7 +33,7 @@ interface UiState {
   lootQueue: Item[];
   levelUp: number | null;
   bossSlain: string | null;
-  energyPrompt: { questId?: string; source: 'post-quest' | 'post-run' } | null;
+  energyPrompt: { questId?: string; source: 'post-quest' | 'post-run' | 'manual' } | null;
   captureOpen: boolean;
   shake: number;
   toast: (t: Omit<Toast, 'id'>) => void;

@@ -9,6 +9,8 @@ Full spec: `docs/PRD.md` (source of truth). This file is the short version plus 
 - If unsure about a library version or API, check current docs / npm instead of guessing.
 
 ## Process rules
+> **Owner override (22 Oct 2026):** the owner asked me to build all milestones end-to-end without stopping, and to make the decisions myself. M1–M5 were therefore built in one go. Decisions taken are logged under "Decisions" below. From now on, the default per-milestone/plan-first rules apply again to new work.
+
 1. **One milestone at a time** (M1 → M5). Before coding a milestone: show a short plan (what, files, installs) and **wait for OK**.
 2. End of each milestone: build passes with no errors, tests pass, commit, give Android deploy + "Add to Home screen" steps, then **STOP**. Owner uses it for a few days before the next milestone.
 3. **Scope creep guard:** new feature ideas mid-milestone go into `IDEAS.md`, not code. Remind the owner of the current milestone.
@@ -26,7 +28,8 @@ Full spec: `docs/PRD.md` (source of truth). This file is the short version plus 
 | Storage | Dexie 4 (IndexedDB) + `dexie-react-hooks`; schema version + migrations from day one |
 | Charts | Recharts 3 (M3) |
 | Tests | Vitest + `fake-indexeddb` |
-| Hosting | Free static host with HTTPS, auto-deploying from GitHub |
+| Hosting | GitHub Pages via Actions (`.github/workflows/web.yml`), served at `/ADHDiablo/` (`BASE_PATH`) |
+| Android | Capacitor 8 (`android/`), `@capacitor/local-notifications`, `filesystem`, `share`. APK built + released by `.github/workflows/android.yml` |
 | Phase 2 | Supabase sync/login (local-first stays), Claude API "Break this down" (user's own key) |
 
 ## Non-negotiable product rules
@@ -63,12 +66,33 @@ Full spec: `docs/PRD.md` (source of truth). This file is the short version plus 
 ## Milestones (PRD §9)
 | # | Milestone | Done when | Status |
 |---|---|---|---|
-| M1 | Foundation | PWA installs on Android, dark-fantasy shell + nav, Dexie data layer, quests with regions + quick capture, completion with XP, export/import | **Planning** |
-| M2 | Game feel | Loot drops + animations, inventory + paper-doll, levels, attributes, skill tree, Merchant shop | — |
-| M3 | ADHD core | Morning ritual + energy slider + top-3, post-quest energy loop, Dungeon Runs, Day Map, Blight/cleanse, return bonus, end-of-day graph | — |
-| M4 | Reminders | Per D1 (recommended: Capacitor Android APK + local notifications) — **owner must choose first** | — |
-| M5 | Polish | Sounds, bounties, reduced-motion pass, performance, onboarding | — |
+| M1 | Foundation | PWA installs on Android, dark-fantasy shell + nav, Dexie data layer, quests with regions + quick capture, completion with XP, export/import | Done |
+| M2 | Game feel | Loot drops + animations, inventory + paper-doll, levels, attributes, skill tree, Merchant shop | Done |
+| M3 | ADHD core | Morning ritual + energy slider + top-3, post-quest energy loop, Dungeon Runs, Day Map, Blight/cleanse, return bonus, end-of-day graph | Done |
+| M4 | Reminders | D1 = option A (Capacitor APK) **plus** web fallback, behind `NotificationService` | Done |
+| M5 | Polish | Sounds, bounties, world events, reduced-motion, onboarding | Done (owner testing) |
 | P2 | Phase 2 | Supabase sync + login; Claude API breakdown | — |
 
+## Decisions (made by me on the owner's instruction — revisit if they don't feel right)
+- **D1 reminders:** Option A (Capacitor APK, real OS alarms) built in GitHub Actions, so nothing needs installing on the owner's computer. The web/PWA build keeps in-app reminders (option C behaviour) and points to the APK.
+- **Hosting:** GitHub Pages (no extra account). Owner must enable Pages → Source: GitHub Actions once.
+- **Fonts:** Cinzel (display) + EB Garamond (body), self-hosted via Fontsource (OFL).
+- **XP:** (10 + 4·√min) × type (habit/daily 1, quest 1.2, boss 2) × energy (low 1, med 1.2, high 1.5); +10% "Kindled" region bonus unless blighted. Gold = XP/2. Level n→n+1 needs 100·n^1.5.
+- **Just Start:** finishing the 5-min run pays the quest's full XP once per quest per day; completing the quest later the same day pays half.
+- **Runs ≥5 min count as region activity** (cleanse the region).
+- **Deleting quests** = "Banish" with an Undo toast (no confirm dialog).
+- **Onboarding** offers optional starter quests, none pre-ticked.
+- **Signing key** `android/emberfall.jks` is committed (personal sideloaded app) so updates install over each other without losing the save.
+
+## Architecture
+- `src/game/` pure game logic (unit-tested): xp, levels, loot (+pity), skillTree, blight, returnBonus, bounties, events, suggestions, runs (timestamp timer), dayMap, chronicle, reminders (plans the next 48h).
+- `src/db/` Dexie schema (`SCHEMA_VERSION`), seed data, `migrations.ts`, `backup.ts` (export/import/validate).
+- `src/actions/` DB transactions that apply the rules (complete quest, runs, bounties, gear, tree, merchant) + integration tests with fake-indexeddb.
+- `src/services/` sound (Web Audio synth), haptics, notifications (`NotificationService`: native vs web), files (export/share), platform.
+- `src/state/` hash router, Zustand UI store (toasts, floaters, loot queue…), live-query hooks, reminder/session sync.
+- `src/ui/` kit, icons (original SVG), EmberField particles, Effects (overlays), LootReveal, QuestCard, Shell.
+- `src/screens/` Hearth, Quests, QuestEditor, Realm/Region, Hero (gear/tree/merchant), Ritual, Run, DayMap, Chronicle, Settings, Onboarding.
+
 ## Commands
-(filled in once the project is scaffolded in M1)
+- `npm run dev` · `npm test` · `npm run build` (typecheck + build) · `node scripts/icons.mjs` (regenerate icons)
+- Android locally needs the Android SDK (not available in the cloud container); CI builds the APK.
