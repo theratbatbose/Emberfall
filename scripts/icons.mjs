@@ -39,6 +39,20 @@ try {
     mkdirSync(dir, { recursive: true });
     await sharp(Buffer.from(flame)).resize(size, size).png().toFile(`${dir}/ic_stat_ember.png`);
   }
+  // Splash screens: the icon centred on the dark background, at each existing size.
+  const { readdirSync, existsSync } = await import('node:fs');
+  for (const d of readdirSync(res)) {
+    const f = `${res}/${d}/splash.png`;
+    if (!d.startsWith('drawable') || !existsSync(f)) continue;
+    const { width, height } = await sharp(f).metadata();
+    const s = Math.round(Math.min(width, height) * 0.32);
+    const logo = await sharp(svg).resize(s, s).png().toBuffer();
+    const out = await sharp({ create: { width, height, channels: 4, background: '#0c0908' } })
+      .composite([{ input: logo, gravity: 'center' }])
+      .png()
+      .toBuffer();
+    await sharp(out).toFile(f);
+  }
   console.log('Android icons written');
 } catch (e) {
   console.log('Skipped Android icons:', e.message);
